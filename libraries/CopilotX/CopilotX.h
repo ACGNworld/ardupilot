@@ -7,24 +7,12 @@
 class CopilotX
 {
 public:
-    CopilotX();
     bool init();
     void update();
-    float get_accel_x() const { return _accel[0]; }
-    float get_accel_y() const { return _accel[1]; }
-    float get_accel_z() const { return _accel[2]; }
-    float get_gyro_x() const { return _gyro[0]; }
-    float get_gyro_y() const { return _gyro[1]; }
-    float get_gyro_z() const { return _gyro[2]; }
-    float get_ori_x() const { return _ori[0]; }
-    float get_ori_y() const { return _ori[1]; }
-    float get_ori_z() const { return _ori[2]; }
+    float eIMUdata[11];
 
 private:
     AP_HAL::UARTDriver *_uart;
-    float _accel[3];
-    float _gyro[3];
-    float _ori[3];
 };
 
 void PosResolve(char name, char *body, int length);

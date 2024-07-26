@@ -16,6 +16,8 @@ static void failsafe_check_static()
 void Copter::init_ardupilot()
 {
 
+    copilotx.init();
+
 #if STATS_ENABLED == ENABLED
     // initialise stats module
     g2.stats.init();

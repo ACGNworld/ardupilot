@@ -83,6 +83,12 @@ void Copter::Log_Write_Attitude()
     }
 }
 
+//diy
+void Copter::Log_Write_CopilotX(float eIMUdata[11])
+{
+    ahrs.Write_CopilotX(eIMUdata);
+}
+
 // Write an EKF and POS packet
 void Copter::Log_Write_EKF_POS()
 {
