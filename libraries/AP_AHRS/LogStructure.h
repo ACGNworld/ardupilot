@@ -3,12 +3,13 @@
 #include <AP_Logger/LogStructure.h>
 
 #define LOG_IDS_FROM_AHRS \
-    LOG_AHR2_MSG, \
-    LOG_AOA_SSA_MSG, \
+    LOG_AHR2_MSG,         \
+    LOG_AOA_SSA_MSG,  \
     LOG_ATTITUDE_MSG, \
-    LOG_ORGN_MSG, \
-    LOG_POS_MSG, \
-    LOG_RATE_MSG
+    LOG_ORGN_MSG,     \
+    LOG_POS_MSG,      \
+    LOG_RATE_MSG,     \
+    LOG_COPILOTX_MSG
 
 // @LoggerMessage: AHR2
 // @Description: Backup AHRS data
@@ -168,6 +169,22 @@ struct PACKED log_Video_Stabilisation {
     float Q4;
 };
 
+//diy
+struct PACKED log_copilotx{
+    LOG_PACKET_HEADER;
+    uint64_t time_us;
+    float accel_x;
+    float accel_y;
+    float accel_z;
+    float gyro_x;
+    float gyro_y;
+    float gyro_z;
+    float ori_x;
+    float ori_y;
+    float ori_z;
+    float longitude;
+    float latitude;
+};
 
 #define LOG_STRUCTURE_FROM_AHRS \
     { LOG_AHR2_MSG, sizeof(log_AHRS), \
@@ -183,5 +200,6 @@ struct PACKED log_Video_Stabilisation {
     { LOG_RATE_MSG, sizeof(log_Rate), \
         "RATE", "Qffffffffffff",  "TimeUS,RDes,R,ROut,PDes,P,POut,YDes,Y,YOut,ADes,A,AOut", "skk-kk-kk-oo-", "F?????????BB-" , true }, \
     { LOG_VIDEO_STABILISATION_MSG, sizeof(log_Video_Stabilisation), \
-        "VSTB", "Qffffffffff",  "TimeUS,GyrX,GyrY,GyrZ,AccX,AccY,AccZ,Q1,Q2,Q3,Q4", "sEEEooo????", "F000000????" },
-
+        "VSTB", "Qffffffffff",  "TimeUS,GyrX,GyrY,GyrZ,AccX,AccY,AccZ,Q1,Q2,Q3,Q4", "sEEEooo????", "F000000????" },\
+    { LOG_COPILOTX_MSG, sizeof(log_copilotx), \
+        "eIMU", "Qfffffffffff", "TimeUS,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,OriX,OriY,OriZ,Lng,Lat", "soooEEE---DU", "F00000000000" },

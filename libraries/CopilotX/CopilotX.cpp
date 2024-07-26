@@ -4,11 +4,10 @@
 
 ComStr command;
 void UartInit();
-void setup();
-void loop();
+float tempEimuData[11];
 
-// extern const AP_HAL::HAL &hal;
-const AP_HAL::HAL &hal = AP_HAL::get_HAL();
+extern const AP_HAL::HAL &hal;
+
 
 bool CopilotX::init() {
     _uart = hal.serial(1); // 使用uartA作为串口
@@ -27,6 +26,7 @@ void CopilotX::update() {
     {
         command.addData(_uart->read());
     }
+    memcpy(eIMUdata, tempEimuData, sizeof(eIMUdata));
 }
 
 void UartInit()
@@ -44,8 +44,9 @@ void UartInit()
 
 void PosResolve(char name, char *body, int length)
 {
-
     hal.serial(0)->printf("name:%c,  body:%s\n", name, body);
+    // std::sscanf(body, "t:%*ld,ax:%f,ay:%f,az:%f,gx:%f,gy:%f,gz:%f,ox:%f,oy:%f,oz:%f,lo:%f,la:%f",
+    //        &temp[0], &temp[1], &temp[2], &temp[3], &temp[4], &temp[5], &temp[6], &temp[7], &temp[8], &temp[9], &temp[10]);
 }
 
 //********************类函数定义

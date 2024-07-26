@@ -69,7 +69,7 @@
 #include <AC_Sprayer/AC_Sprayer.h>          // Crop sprayer library
 #include <AP_ADSB/AP_ADSB.h>                // ADS-B RF based collision avoidance module library
 #include <AP_Proximity/AP_Proximity.h>      // ArduPilot proximity sensor library
-
+#include <CopilotX/CopilotX.h>
 // Configuration
 #include "defines.h"
 #include "config.h"
@@ -221,7 +221,7 @@ public:
     Copter(void);
 
 private:
-
+    CopilotX copilotx;
     // key aircraft parameters passed to multiple libraries
     AP_Vehicle::MultiCopter aparm;
 
@@ -660,6 +660,7 @@ private:
     void throttle_loop();
     void update_batt_compass(void);
     void fourhundred_hz_logging();
+    void hunderd_hz_logging();
     void ten_hz_logging_loop();
     void twentyfive_hz_logging();
     void three_hz_loop();
@@ -790,6 +791,7 @@ private:
     // Log.cpp
     void Log_Write_Control_Tuning();
     void Log_Write_Attitude();
+    void Log_Write_CopilotX(float eIMUdata[11]);  //fjj
     void Log_Write_EKF_POS();
     void Log_Write_Data(LogDataID id, int32_t value);
     void Log_Write_Data(LogDataID id, uint32_t value);

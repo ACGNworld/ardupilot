@@ -439,6 +439,7 @@ public:
     };
     void Write_Origin(LogOriginType origin_type, const Location &loc) const; 
     void write_video_stabilisation() const;
+    void Write_CopilotX(float eData[11]) const;
 
     // return a smoothed and corrected gyro vector in radians/second
     // using the latest ins data (which may not have been consumed by

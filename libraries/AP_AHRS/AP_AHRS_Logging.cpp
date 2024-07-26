@@ -163,3 +163,25 @@ void AP_AHRS_View::Write_Rate(const AP_Motors &motors, const AC_AttitudeControl 
     };
     AP::logger().WriteBlock(&pkt_rate, sizeof(pkt_rate));
 }
+
+//diy
+void AP_AHRS::Write_CopilotX(float eIMUdata[11]) const
+{
+    const struct log_copilotx pkt
+    {
+        LOG_PACKET_HEADER_INIT(LOG_VIDEO_STABILISATION_MSG),
+            time_us : AP_HAL::micros64(),
+            accel_x : eIMUdata[0],
+            accel_y : eIMUdata[1],
+            accel_z : eIMUdata[2],
+            gyro_x : eIMUdata[3],
+            gyro_y : eIMUdata[4],
+            gyro_z : eIMUdata[5],
+            ori_x : eIMUdata[6],
+            ori_y : eIMUdata[7],
+            ori_z : eIMUdata[8],
+            longitude : eIMUdata[9],
+            latitude : eIMUdata[10]
+    };
+    AP::logger().WriteBlock(&pkt, sizeof(pkt));
+}
