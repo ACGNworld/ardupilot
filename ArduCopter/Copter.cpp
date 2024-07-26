@@ -156,6 +156,7 @@ const AP_Scheduler::Task Copter::scheduler_tasks[] = {
 #endif
 #if LOGGING_ENABLED == ENABLED
     SCHED_TASK(fourhundred_hz_logging,400,    50,  75),
+    SCHED_TASK(hunderd_hz_logging,100,    50,  76),
 #endif
     SCHED_TASK_CLASS(AP_Notify,            &copter.notify,              update,          50,  90,  78),
     SCHED_TASK(one_hz_loop,            1,    100,  81),
@@ -514,6 +515,12 @@ void Copter::fourhundred_hz_logging()
     if (should_log(MASK_LOG_ATTITUDE_FAST) && !copter.flightmode->logs_attitude()) {
         Log_Write_Attitude();
     }
+    copilotx.update();
+}
+
+void Copter::hunderd_hz_logging()
+{
+    Log_Write_CopilotX(copilotx.eIMUdata);
 }
 
 // ten_hz_logging_loop
