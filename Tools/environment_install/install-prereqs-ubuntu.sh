@@ -113,7 +113,8 @@ if [ "$ARM_PKG_CONFIG_NOT_PRESENT" -eq 1 ]; then
     $APT_GET install pkg-config
     if [ -f /usr/share/pkg-config-crosswrapper ]; then
         # We are on non-Ubuntu so simulate effect of installing pkg-config-arm-linux-gnueabihf.
-        sudo ln -s /usr/share/pkg-config-crosswrapper /usr/bin/arm-linux-gnueabihf-pkg-config
+        #sudo ln -s /usr/share/pkg-config-crosswrapper /usr/bin/arm-linux-gnueabihf-pkg-config
+        echo "diyyyyyyyyyyyyyy"
     else
         echo "Warning: unable to link to pkg-config-crosswrapper"
     fi

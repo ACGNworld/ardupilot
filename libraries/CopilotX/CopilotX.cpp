@@ -45,8 +45,7 @@ void UartInit()
 void PosResolve(char name, char *body, int length)
 {
     hal.serial(0)->printf("name:%c,  body:%s\n", name, body);
-    sscanf(body, "aX:%f,aY:%f,aZ:%f,gX:%f,gY:%f,gZ:%f,oX:%f,oY:%f,oZ:%f,lng:%f,lat:%f",
-           &tempEimuData[0], &tempEimuData[1], &tempEimuData[2], &tempEimuData[3], &tempEimuData[4], &tempEimuData[5], &tempEimuData[6], &tempEimuData[7], &tempEimuData[8], &tempEimuData[9], &tempEimuData[10]);
+    //sscanf(body, "aX:%f,aY:%f,aZ:%f,gX:%f,gY:%f,gZ:%f,oX:%f,oY:%f,oZ:%f,lng:%f,lat:%f",&tempEimuData[0], &tempEimuData[1], &tempEimuData[2], &tempEimuData[3], &tempEimuData[4], &tempEimuData[5], &tempEimuData[6], &tempEimuData[7], &tempEimuData[8], &tempEimuData[9], &tempEimuData[10]);
 }
 
 //********************类函数定义
